@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devopsflow-app
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devopsflow-app
+  template:
+    metadata:
+      labels:
+        app: devopsflow-app
+    spec:
+      containers:
+        - name: devopsflow-app
+          image: registry.cn-hangzhou.aliyuncs.com/devflow/devopsflow-app:v1
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/devopsflow-app/config   # 挂载到容器内路径
+              readOnly: true
+      volumes:
+        - name: config-volume
+          configMap:
+            name: devopsflow-app
