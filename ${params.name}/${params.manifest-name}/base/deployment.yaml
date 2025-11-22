@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${params.name}
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ${params.name}
+  template:
+    metadata:
+      labels:
+        app: ${params.name}
+    spec:
+      containers:
+        - name: ${params.name}
+          image: registry.cn-hangzhou.aliyuncs.com/devflow/${params.name}:${params.image-tag}
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/${params.name}/config   # 挂载到容器内路径
+              readOnly: true
+      volumes:
+        - name: config-volume
+          configMap:
+            name: ${params.name}
