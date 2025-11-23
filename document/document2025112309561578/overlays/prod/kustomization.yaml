@@ -1,0 +1,12 @@
+resources:
+  - ../../base
+generatorOptions:
+  disableNameSuffixHash: true
+configMapGenerator:
+  - name: document
+    namespace: app
+    files:
+      - config.yaml
+    behavior: create
+patchesStrategicMerge:
+  - deployment-patch.yaml
