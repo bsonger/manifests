@@ -1,0 +1,10 @@
+resources:
+  - ../../base
+configMapGenerator:
+  - name: devflow
+    files:
+      - config.yaml
+patchesStrategicMerge:
+  - deployment-patch.yaml
+generatorOptions:
+  disableNameSuffixHash: true
