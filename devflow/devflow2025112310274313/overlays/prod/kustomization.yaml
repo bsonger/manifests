@@ -7,6 +7,6 @@ configMapGenerator:
     namespace: app
     files:
       - config.yaml
-    behavior: replace
+    behavior: create
 patchesStrategicMerge:
   - deployment-patch.yaml
