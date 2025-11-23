@@ -1,6 +1,0 @@
-resources:
-  - ../../base
-configMapGenerator:
-  - name: devflow
-    files:
-      - config-dev.yaml

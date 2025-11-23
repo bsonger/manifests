@@ -1,6 +1,0 @@
-resources:
-  - ../../base
-configMapGenerator:
-  - name: ${params.name}
-    files:
-      - config-dev.yaml
