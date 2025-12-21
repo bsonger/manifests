@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: devflow
   namespace: app
+  labels:
+    app: devflow
 spec:
   selector:
     app: devflow
