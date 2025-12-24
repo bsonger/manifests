@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devflow-confole
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devflow-confole
+  template:
+    metadata:
+      labels:
+        app: devflow-confole
+    spec:
+      containers:
+        - name: devflow-confole
+          image: registry.cn-hangzhou.aliyuncs.com/devflow/devflow-confole:devflow-confole2025122418194457
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/devflow-confole/config   # 挂载到容器内路径
+              readOnly: true
+      volumes:
+        - name: config-volume
+          configMap:
+            name: devflow-confole
