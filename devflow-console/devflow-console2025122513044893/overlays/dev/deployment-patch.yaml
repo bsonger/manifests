@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devflow-console
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devflow-console
+  template:
+    metadata:
+      labels:
+        app: devflow-console
+    spec:
+      containers:
+        - name: devflow-console
+          env:
+            - name: env
+              value: dev
