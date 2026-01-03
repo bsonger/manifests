@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devflow-console
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devflow-console
+  template:
+    metadata:
+      labels:
+        app: devflow-console
+    spec:
+      containers:
+        - name: devflow-console
+          image: registry.cn-hangzhou.aliyuncs.com/devflow/devflow-console:devflow-console2026010308455388
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/devflow-console/config   # 挂载到容器内路径
+              readOnly: true
+      volumes:
+        - name: config-volume
+          configMap:
+            name: devflow-console
